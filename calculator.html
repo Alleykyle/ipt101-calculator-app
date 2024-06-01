@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR LOGIC WITH JAVASCRIPT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        #result {
+            width: 90%;
+            height: 25px;
+            padding: 20px;
+            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+            font-weight: 700;
+            text-align: right;
+            font-size: 40px;
+            color: #0c0c0c;
+            border: 4px solid black;
+            background-color: #e7d586;
+            border-radius: 20px ;
+        }
+
+        body {
+            display: flex;
+            font-family: "PT Sans", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .num-btn {
+            width: 6.3em;
+            height: 5em;
+            font-family: "PT Sans", sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            font-style: normal;
+            border: 3px solid black;
+            text-align: center;
+            background-color: rgb(156, 7, 176);
+            color: white;
+        }
+
+        .class {
+            height: 70px;
+            width: 25em;
+            border: 5px solid black;
+            padding: 30px;
+            text-align: center;
+            background-color: rgb(120, 159, 209);
+        }
+        
+        .container {
+            margin: 0 auto;
+            background-color: rgb(125, 192, 209);
+
+        }
+        
+        .num-pad {
+            text-align: center;
+            max-width: 25em;
+            padding: 30px;
+            border: 5px solid black;
+            width: 25em;
+            margin: 0 auto;
+        }
+
+        .ooperator-btn {
+            width: 6.3em;
+            height: 5em;
+            font-family: "PT Sans", sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            font-style: normal;
+            border: 3px solid black;
+            text-align: center;
+            background-color: rgb(156, 7, 176);
+            color: white;
+        }
+
+        .operator-btn {
+            width: 6.3em;
+            height: 5em;
+            font-family: "PT Sans", sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            font-style: normal;
+            border: 3px solid black;
+            text-align: center;
+            background-color: rgb(156, 7, 176);
+            color: white;
+        }
+
+        .special_operator-btn {
+            width: 6.3em;
+            height: 5em;
+            font-family: "PT Sans", sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            font-style: normal;
+            border: 3px solid black;
+            text-align: center;
+            background-color: rgb(156, 7, 176);
+            color: white;
+        }
+
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 900;
+        }
+
+        .diff_operator-btn{
+            width: 6.3em;
+            height: 10.3em;
+            font-family: "PT Sans", sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            font-style: normal;
+            border: 3px solid black;
+            text-align: center;
+            background-color: rgb(246, 131, 0);
+            color: white;
+        }
+
+        .zero_operator-btn {
+            width: 13em;
+            height: 5em;
+            font-family: "PT Sans", sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            font-style: normal;
+            border: 3px solid black;
+            text-align: center;
+            background-color: rgb(156, 7, 176);
+            color: white;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="class">
+            <table>
+                <tr>
+                    <td colspan="3"><input type="text" id="result" disabled></td>
+                </tr>
+            </table>
+        </div>
+        <div class="num-pad"> 
+            <table>
+                <tr>
+                    <td><input type="button" value="C" onclick="clearInput()" class="special_operator-btn"></td>
+                    <td><input type="button" value="DEL" onclick="del()" class="special_operator-btn"></td>
+                    <td><button class="special_operator-btn" onclick="divide('/')"><img width="25" height="25" src="https://img.icons8.com/ios-glyphs/30/ffffff/divide.png" alt="divide"/></button></td>
+                    <td><input type="button" value="x" onclick="multiply()" class="operator-btn"></td>
+                </tr>
+    
+                <tr>
+                    <td><input type="button" value="7" onclick="appendNumber(7)" class="num-btn"></td>
+                    <td><input type="button" value="8" onclick="appendNumber(8)" class="num-btn"></td>
+                    <td><input type="button" value="9" onclick="appendNumber(9)" class="num-btn"></td>
+                    <td><input type="button" value="-" onclick="subtract()" class="operator-btn"></td>
+                    
+                </tr>
+    
+                <tr>
+                    <td><input type="button" value="4" onclick="appendNumber(4)" class="num-btn"></td>
+                    <td><input type="button" value="5" onclick="appendNumber(5)" class="num-btn"></td>
+                    <td><input type="button" value="6" onclick="appendNumber(6)" class="num-btn"></td>
+                    <td><input type="button" value="+" onclick="add()" class="operator-btn"></td>
+                    
+                    
+                </tr>
+    
+                <tr>
+                    <td><input type="button" value="1" onclick="appendNumber(1)" class="num-btn"></td>
+                    <td><input type="button" value="2" onclick="appendNumber(2)" class="num-btn"></td>
+                    <td><input type="button" value="3" onclick="appendNumber(3)" class="num-btn"></td>
+                    <td rowspan="2"><input type="button" value="=" onclick="calculate()" class="diff_operator-btn"></td>
+                </tr>
+    
+                <tr>
+                    <td colspan="2"><input type="button" value="0" onclick="appendNumber(0)" class="zero_operator-btn"></td>
+                    <td><input type="button" value="." onclick="appendNumber('.')" class="ooperator-btn"></td>
+                </tr>
+            </table>
+        </div> 
+    </div>
+        
+    <script>
+        let currentInput = '';
+        let currentOperator = '';
+
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function add() {
+            currentOperator = "+";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+        function calculate() {
+            let expression = currentInput.replace(/x/g, '*') ;
+            const result = eval(expression);
+            document.getElementById('result').value = result;
+            currentInput = result.toString();
+            currentOperator = '';
+        }
+
+        function clearInput() {
+            currentInput = '';
+            currentOperator = '';
+            document.getElementById('result').value = '';
+        }
+
+        function divide() {
+            currentOperator = "/";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function multiply() {
+            currentOperator = "x";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function subtract() {
+            currentOperator = "-";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function del() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('result').value = currentInput;
+        }
+
+    </script>
+</body>
+</html>
+
+<!-- <div class="class">
+        <h1>CALCULATOR</h1>
+        <table>
+            <tr>
+                <td colspan="3"><input type="text" id="result" disabled></td>
+            </tr>
+            <div id="table2">
+                <tr>
+                    <td><input type="button" value="C" onclick="clearInput()" class="special_operator-btn"></td>
+                    <td><input type="button" value="DEL" onclick="del()" class="special_operator-btn"></td>
+                    <td><input type="button" value="/" onclick="devide()" class="special_operator-btn"></td>
+                    <td><input type="button" value="x" onclick="multiply()" class="operator-btn"></td>
+                </tr>
+    
+                <tr>
+                    <td><input type="button" value="7" onclick="appendNumber(7)" class="num-btn"></td>
+                    <td><input type="button" value="8" onclick="appendNumber(8)" class="num-btn"></td>
+                    <td><input type="button" value="9" onclick="appendNumber(9)" class="num-btn"></td>
+                    <td><input type="button" value="-" onclick="subtract()" class="operator-btn"></td>
+                    
+                </tr>
+    
+                <tr>
+                    <td><input type="button" value="4" onclick="appendNumber(4)" class="num-btn"></td>
+                    <td><input type="button" value="5" onclick="appendNumber(5)" class="num-btn"></td>
+                    <td><input type="button" value="6" onclick="appendNumber(6)" class="num-btn"></td>
+                    <td><input type="button" value="+" onclick="add()" class="operator-btn"></td>
+                    
+                    
+                </tr>
+    
+                <tr>
+                    <td><input type="button" value="1" onclick="appendNumber(1)" class="num-btn"></td>
+                    <td><input type="button" value="2" onclick="appendNumber(2)" class="num-btn"></td>
+                    <td><input type="button" value="3" onclick="appendNumber(3)" class="num-btn"></td>
+                    
+                    
+                </tr>
+    
+                <tr>
+                    <td colspan="2"><input type="button" value="0" onclick="appendNumber(0)" class="num-btn"></td>
+                    <td><input type="button" value="." onclick="appendNumber('.')" class="ooperator-btn"></td>
+                    <td><input type="button" value="=" onclick="calculate()" class="special_operator-btn"></td>   
+                </tr>
+    
+            </table>
+
+            </div>
+            
+    </div> -->
